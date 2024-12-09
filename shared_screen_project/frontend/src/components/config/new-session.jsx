@@ -1,29 +1,38 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../ui/css/new-sesion.css"; // Archivo CSS
 
 export default function NewSession() {
   const navigate = useNavigate();
 
   const createNewSession = async () => {
     try {
-      const response = await fetch("http://localhost:4000/new-session");
+      const response = await fetch("https://sharedscreen-production.up.railway.app/new-session");
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("No se pudo establecer conexión con el servidor");
       }
       const data = await response.json();
       navigate(`/canvas?sessionId=${data.sessionId}`);
     } catch (error) {
-      console.error("Failed to fetch:", error);
+      console.error("Error al crear la sesión:", error);
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <button
-        onClick={createNewSession}
-        className="px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        Create New Session
+    <div className="container">
+      <header>
+        <h1>Bienvenido a SharedScreen</h1>
+        <p>
+          Comparte tu pantalla y colabora en tiempo real. ¡Haz clic en el botón
+          para iniciar una nueva sesión!
+        </p>
+      </header>
+      <button className="create-button" onClick={createNewSession}>
+        Crear Nueva Sesión
       </button>
+      <footer>
+        <p>© 2024 SharedScreen. Todos los derechos reservados.</p>
+      </footer>
     </div>
   );
 }
