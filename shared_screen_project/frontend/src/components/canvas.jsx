@@ -7,7 +7,7 @@ import { Button } from './ui/button';
 import io from 'socket.io-client';
 import './ui/css/canvas.css';
 
-const socket = io('http://localhost:4000');
+const socket = io('https://sharedscreen-production.up.railway.app:8080/');
 
 export default function Canvas() {
   const canvasRef = useRef(null);
