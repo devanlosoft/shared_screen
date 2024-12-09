@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000", // Permitir solicitudes desde tu frontend
+    origin: "http://shared-screen.vercel.app", // Permitir solicitudes desde tu frontend
     methods: ["GET", "POST"],
   },
 });
